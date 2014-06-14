@@ -11,6 +11,7 @@ public class View extends JFrame {
 	private static final int WINDOW_HEIGHT = 300;
 	private static final boolean ALLOW_RESIZE = false;
 	private Controller controller;
+	private JTextField resultText;
 
 	public void open(Controller controller) {
 		this.controller = controller;
@@ -33,7 +34,7 @@ public class View extends JFrame {
 		// result text UI
 		JPanel resultPanel = new JPanel();
 		resultPanel.setPreferredSize(new Dimension(WINDOW_WIDTH, 50));
-		JTextField resultText = new JTextField();
+		resultText = new JTextField();
 		resultText.setEditable(false);
 		resultText.setPreferredSize(new Dimension(WINDOW_WIDTH, 50));
 		resultText.setBackground(Color.BLACK);
@@ -55,7 +56,7 @@ public class View extends JFrame {
 		numberPanel.setSize(250, 350);
 		actionPanel.add(numberPanel);
 
-		ArrayList<String> listButton = new ArrayList<String>();
+		ArrayList<String> listButton = new ArrayList<>();
 		listButton.add("7");
 		listButton.add("8");
 		listButton.add("9");
@@ -79,12 +80,25 @@ public class View extends JFrame {
 		JPanel operatorPanel = new JPanel();
 		operatorPanel.setLayout(new BoxLayout(operatorPanel, BoxLayout.Y_AXIS));
 		operatorPanel.setPreferredSize(new Dimension(150, 350));
+		operatorPanel.setSize(new Dimension(150, 350));
 		actionPanel.add(operatorPanel);
+		ArrayList<String> listOperator = new ArrayList<>();
+		listOperator.add("+");
+		listOperator.add("-");
+		listOperator.add("*");
+		listOperator.add("/");
+		listOperator.add("=");
 
-		operatorPanel.add(new Button("+"));
-		operatorPanel.add(new Button("-"));
-		operatorPanel.add(new Button("*"));
-		operatorPanel.add(new Button("/"));
-		operatorPanel.add(new Button("="));
+		for(String buttonName : listOperator) {
+			JButton button = new JButton(buttonName);
+			button.addActionListener(controller.actionListener());
+			operatorPanel.add(button);
+		}
+
+
+	}
+
+	public void setDisplayedText(String text) {
+		resultText.setText(text);
 	}
 }
