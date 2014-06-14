@@ -10,8 +10,10 @@ public class View extends JFrame {
 	private static final int WINDOW_WIDTH = 300;
 	private static final int WINDOW_HEIGHT = 300;
 	private static final boolean ALLOW_RESIZE = false;
+	private Controller controller;
 
-	public void open() {
+	public void open(Controller controller) {
+		this.controller = controller;
 		init();
 		setVisible(true);
 	}
@@ -69,6 +71,7 @@ public class View extends JFrame {
 
 		for(String buttonName : listButton) {
 			JButton button = new JButton(buttonName);
+			button.addActionListener(controller.actionListener());
 			numberPanel.add(button);
 		}
 
