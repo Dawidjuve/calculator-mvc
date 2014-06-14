@@ -19,7 +19,7 @@ public class Controller {
 
 				// IF debug enabled, write console log
 				if(Main.DEBUG_MODE) {
-					System.out.println("\"" + button.getText() + "\"" + " button pressed");
+					System.out.println("Button \"" + button.getText() + "\" pressed");
 				}
 
 			}
